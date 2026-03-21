@@ -48,6 +48,7 @@ interface ConfigStore {
   hydrate: () => Promise<void>;
   save: () => Promise<void>;
   setColorScheme: (name: string) => Promise<boolean>;
+  loadCustomTheme: (name: string) => Promise<boolean>;
   resetColorScheme: () => void;
 }
 
@@ -210,6 +211,22 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
     }
     try {
       const text = await fetchColorScheme(name);
+      const parsed = parseConfig(text);
+      get().load(parsed);
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  },
+
+  loadCustomTheme: async (name) => {
+    if (name === "") {
+      get().resetColorScheme();
+      return true;
+    }
+    try {
+      const text = await invoke<string>("read_theme", { name });
       const parsed = parseConfig(text);
       get().load(parsed);
       return true;
