@@ -51,14 +51,8 @@ function Gap({ expand }: { expand?: boolean }) {
 export default function Sidebar() {
   return (
     <div id="sidebar">
-      <div className="sidebar-header">
-        <div className="window-actions-container" data-tauri-drag-region>
-          <div className="window-actions">
-            <div className="window-dot close"><span>&times;</span></div>
-            <div className="window-dot minimize"><span>&ndash;</span></div>
-            <div className="window-dot maximize"><span>+</span></div>
-          </div>
-        </div>
+      <div className="sidebar-header" data-tauri-drag-region>
+        <div className="window-traffic-spacer" />
       </div>
       <div className="sidebar-brand" onClick={() => window.location.hash = "/"}>
         <img src={logoSrc} alt="Ghostgen" width={28} height={28} style={{ borderRadius: 6 }} />

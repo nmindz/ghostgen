@@ -30,6 +30,7 @@ pub fn run() {
             backup::read_backup,
             backup::restore_backup,
             backup::delete_backup,
+            backup::get_backup_locations,
             themes::list_custom_themes,
             themes::read_theme,
             themes::save_theme,

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Trash2, Pencil, X, Check } from "lucide-react";
+import { Plus, Trash2, Pencil, X, Check, ChevronUp, ChevronDown } from "lucide-react";
 
 const MODIFIERS = ["super", "ctrl", "alt", "shift"] as const;
 
@@ -34,6 +34,31 @@ const ACTIONS = [
   "csi","esc","text",
   "ignore","unbind",
 ];
+
+function InlineDropdown({ value, onChange, options, placeholder }: {
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  placeholder: string;
+}) {
+  return (
+    <div className="dropdown-wrapper">
+      <select
+        className="dropdown-native"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        <option value="">{placeholder}</option>
+        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+      </select>
+      <span className="dropdown-label">{value || placeholder}</span>
+      <span className="dropdown-chevrons">
+        <ChevronUp size={10} strokeWidth={2.5} />
+        <ChevronDown size={10} strokeWidth={2.5} />
+      </span>
+    </div>
+  );
+}
 
 function parseKeybind(kb: string): { trigger: string; action: string } {
   const eqIndex = kb.indexOf("=");
@@ -97,15 +122,9 @@ function KeybindRow({ value, onSave, onDelete }: KeybindRowProps) {
               </button>
             ))}
           </div>
-          <select className="kb-select" value={editKey} onChange={(e) => setEditKey(e.target.value)}>
-            <option value="">key…</option>
-            {COMMON_KEYS.map((k) => <option key={k} value={k}>{k}</option>)}
-          </select>
+          <InlineDropdown value={editKey} onChange={setEditKey} options={COMMON_KEYS} placeholder="key…" />
           <span className="kb-eq">=</span>
-          <select className="kb-select kb-action-select" value={editAction} onChange={(e) => setEditAction(e.target.value)}>
-            <option value="">action…</option>
-            {ACTIONS.map((a) => <option key={a} value={a}>{a}</option>)}
-          </select>
+          <InlineDropdown value={editAction} onChange={setEditAction} options={ACTIONS} placeholder="action…" />
         </div>
         <div className="kb-edit-actions">
           <button className="kb-icon-btn kb-icon-confirm" onClick={save} title="Save"><Check size={14} /></button>
@@ -186,15 +205,9 @@ export default function KeybindEditor({ value, onChange }: KeybindEditorProps) {
                 </button>
               ))}
             </div>
-            <select className="kb-select" value={newKey} onChange={(e) => setNewKey(e.target.value)}>
-              <option value="">key…</option>
-              {COMMON_KEYS.map((k) => <option key={k} value={k}>{k}</option>)}
-            </select>
+            <InlineDropdown value={newKey} onChange={setNewKey} options={COMMON_KEYS} placeholder="key…" />
             <span className="kb-eq">=</span>
-            <select className="kb-select kb-action-select" value={newAction} onChange={(e) => setNewAction(e.target.value)}>
-              <option value="">action…</option>
-              {ACTIONS.map((a) => <option key={a} value={a}>{a}</option>)}
-            </select>
+            <InlineDropdown value={newAction} onChange={setNewAction} options={ACTIONS} placeholder="action…" />
           </div>
           <div className="kb-edit-actions">
             <button className="kb-icon-btn kb-icon-confirm" onClick={handleAdd} title="Add"><Check size={14} /></button>

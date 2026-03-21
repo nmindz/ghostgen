@@ -137,47 +137,8 @@ button:focus:not(:focus-visible) {
   flex-direction: column;
 }
 
-.window-actions-container {
-  display: flex;
-  padding: 15px 0 0 15px;
-  margin-bottom: 12px;
-}
-
-.window-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.window-dot {
-  border-radius: 50%;
-  height: 12px;
-  width: 12px;
-  border: 0;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  color: rgba(0, 0, 0, 0);
-  background-color: var(--color-warning);
-}
-
-.window-dot span {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -3px;
-  margin-right: -1px;
-}
-
-.window-dot.close {
-  background-color: var(--color-danger);
-}
-
-.window-dot.maximize {
-  background-color: var(--color-success);
-}
-
-.window-actions:hover .window-dot {
-  color: rgba(0, 0, 0, 0.5);
+.window-traffic-spacer {
+  height: 28px;
 }
 
 .sidebar-brand {
@@ -745,26 +706,6 @@ button:focus:not(:focus-visible) {
   color: #fff;
 }
 
-.kb-select {
-  background: var(--bg-input-focus);
-  border: 1px solid var(--border-input);
-  border-radius: var(--radius-level-5);
-  color: var(--font-color);
-  padding: 4px 6px;
-  font-size: 12px;
-  font-family: var(--font-family-mono);
-  outline: none;
-  min-width: 80px;
-}
-
-.kb-select:focus {
-  border-color: var(--color-input-accent);
-}
-
-.kb-action-select {
-  min-width: 140px;
-}
-
 .kb-edit-actions {
   display: flex;
   gap: 2px;
@@ -1255,11 +1196,43 @@ button:focus:not(:focus-visible) {
 }
 
 /* ========== Backups ========== */
+.backups-settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.backups-settings-panel {
+  background: var(--bg-level-3);
+  border: 1px solid var(--border-level-3);
+  border-radius: var(--radius-level-3);
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.backups-setting-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backups-setting-label {
+  font-size: 12px;
+  color: var(--font-color-muted);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
 .backups-header {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .backups-header .text-input {
@@ -1271,6 +1244,59 @@ button:focus:not(:focus-visible) {
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+}
+
+.backups-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--font-color);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.backups-checkbox input[type="checkbox"] {
+  accent-color: var(--color-input-accent);
+}
+
+.restore-theme-options {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.restore-theme-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 4px;
+}
+
+.backups-radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.backups-radio input[type="radio"] {
+  accent-color: var(--color-input-accent);
+  margin-top: 2px;
+}
+
+.backups-radio div {
+  display: flex;
+  flex-direction: column;
+}
+
+.backups-radio-desc {
+  font-size: 11px;
+  color: var(--font-color-muted);
+  margin-top: 1px;
 }
 
 .backups-list {
@@ -1520,7 +1546,7 @@ button:focus:not(:focus-visible) {
 .ts-themes-list {
   display: flex;
   flex-direction: column;
-  max-height: 135px;
+  max-height: 90px;
   overflow-y: auto;
 }
 
