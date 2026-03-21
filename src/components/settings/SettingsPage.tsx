@@ -12,6 +12,15 @@ import ColorInput from "./ColorInput";
 import PaletteGrid from "./Palette";
 import ThemeDropdown from "./ThemeDropdown";
 import KeybindEditor from "./KeybindEditor";
+import FontFamilyInput from "./FontFamilyInput";
+import FontFeatureInput from "./FontFeatureInput";
+
+const FONT_FAMILY_IDS = new Set([
+  "fontFamily", "fontFamilyBold", "fontFamilyItalic", "fontFamilyBoldItalic",
+  "windowTitleFontFamily",
+]);
+
+const FONT_FEATURE_IDS = new Set(["fontFeature"]);
 import PalettePreview from "@/components/views/PalettePreview";
 import BaseColorPreview from "@/components/views/BaseColorPreview";
 import CursorPreview from "@/components/views/CursorPreview";
@@ -65,7 +74,21 @@ export default function SettingsPage() {
                     onChange={(v) => set(setting.id, v)}
                   />
                 )}
-                {setting.type === "text" && (
+                {setting.type === "text" && FONT_FAMILY_IDS.has(setting.id) && (
+                  <FontFamilyInput
+                    value={value as string}
+                    onChange={(v) => set(setting.id, v)}
+                    placeholder={setting.placeholder}
+                  />
+                )}
+                {setting.type === "text" && FONT_FEATURE_IDS.has(setting.id) && (
+                  <FontFeatureInput
+                    value={value as string}
+                    onChange={(v) => set(setting.id, v)}
+                    placeholder={setting.placeholder}
+                  />
+                )}
+                {setting.type === "text" && !FONT_FAMILY_IDS.has(setting.id) && !FONT_FEATURE_IDS.has(setting.id) && (
                   <TextInput
                     value={value as string}
                     onChange={(v) => set(setting.id, v)}

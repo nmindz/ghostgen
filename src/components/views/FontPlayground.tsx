@@ -3,6 +3,7 @@ import { useConfigStore } from "@/stores/config";
 import { useToastStore } from "@/stores/toasts";
 import Page from "@/components/views/Page";
 import Switch from "@/components/settings/Switch";
+import FontFamilyInput from "@/components/settings/FontFamilyInput";
 
 const SAMPLE_TEXT = `user@ghostgen ~ $ ls -la
 drwxr-xr-x  user  staff  Documents/
@@ -49,17 +50,10 @@ export default function FontPlayground() {
       <div className="font-playground-controls">
         <div className="font-playground-control">
           <label className="font-playground-label">Font Family</label>
-          <input
-            type="text"
-            className="text-input"
-            value={fontFamily}
-            onChange={(e) => setFontFamily(e.target.value)}
-            placeholder="JetBrainsMono Nerd Font"
-            style={{ width: 220 }}
-          />
+          <FontFamilyInput value={fontFamily} onChange={setFontFamily} />
         </div>
         <div className="font-playground-control">
-          <label className="font-playground-label">Font Size</label>
+          <label className="font-playground-label">Size</label>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <input
               type="range"

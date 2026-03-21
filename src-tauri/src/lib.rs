@@ -2,6 +2,7 @@ mod commands;
 
 use commands::backup;
 use commands::config;
+use commands::fonts;
 use commands::themes;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -31,6 +32,7 @@ pub fn run() {
             backup::restore_backup,
             backup::delete_backup,
             backup::get_backup_locations,
+            fonts::list_system_fonts,
             themes::list_custom_themes,
             themes::read_theme,
             themes::save_theme,
