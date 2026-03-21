@@ -47,6 +47,12 @@
   --color-danger: #f25f58;
   --color-warning: #fbbe3c;
   --color-success: #58cb42;
+  --color-on-accent: #ffffff;
+  --toast-success-bg: rgba(88, 203, 66, 0.15);
+  --toast-error-bg: rgba(242, 95, 88, 0.15);
+  --overlay-rgb: 255, 255, 255;
+  --scrollbar-bg: #171717;
+  --scrollbar-thumb: #959595;
 
   font-size: var(--font-size);
   font-family: var(--font-family);
@@ -62,7 +68,7 @@
 }
 
 ::-webkit-scrollbar:hover {
-  background-color: #171717;
+  background-color: var(--scrollbar-bg);
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -72,7 +78,7 @@
 ::-webkit-scrollbar-thumb {
   display: initial;
   border-radius: 10px;
-  background-color: #959595;
+  background-color: var(--scrollbar-thumb);
   border: 2px solid var(--bg-level-1);
 }
 
@@ -194,7 +200,7 @@ button:focus:not(:focus-visible) {
 }
 
 .tab:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(var(--overlay-rgb), 0.06);
 }
 
 .tab.active {
@@ -256,7 +262,7 @@ button:focus:not(:focus-visible) {
 }
 
 .nav-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(var(--overlay-rgb), 0.05);
   border: 1px solid var(--border-level-3);
   border-radius: var(--radius-level-5);
   color: var(--font-color-muted);
@@ -267,7 +273,7 @@ button:focus:not(:focus-visible) {
 }
 
 .nav-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--overlay-rgb), 0.1);
   color: var(--font-color);
 }
 
@@ -420,7 +426,7 @@ button:focus:not(:focus-visible) {
 }
 
 .stepper-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--overlay-rgb), 0.1);
 }
 
 .number-field {
@@ -550,7 +556,7 @@ button:focus:not(:focus-visible) {
 .palette-cell {
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(var(--overlay-rgb), 0.1);
   cursor: pointer;
   font-size: 10px;
   font-weight: 600;
@@ -564,7 +570,7 @@ button:focus:not(:focus-visible) {
 
 .palette-cell:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(var(--overlay-rgb), 0.2);
 }
 
 .palette-editor {
@@ -658,7 +664,7 @@ button:focus:not(:focus-visible) {
 }
 
 .kb-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--overlay-rgb), 0.08);
   color: var(--font-color);
 }
 
@@ -703,7 +709,7 @@ button:focus:not(:focus-visible) {
 .kb-mod-btn.active {
   background: var(--switch-checked-color);
   border-color: var(--switch-checked-color);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 .kb-edit-actions {
@@ -729,7 +735,7 @@ button:focus:not(:focus-visible) {
 }
 
 .kb-add-btn:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(var(--overlay-rgb), 0.04);
   color: var(--font-color);
   border-color: var(--font-color-muted);
 }
@@ -792,7 +798,7 @@ button:focus:not(:focus-visible) {
   justify-content: center;
   font-size: 9px;
   font-weight: 600;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(var(--overlay-rgb), 0.1);
 }
 
 /* ========== Toast ========== */
@@ -816,13 +822,13 @@ button:focus:not(:focus-visible) {
 }
 
 .toast-success {
-  background: #1a472a;
+  background: var(--toast-success-bg);
   border: 1px solid var(--color-success);
   color: var(--color-success);
 }
 
 .toast-error {
-  background: #4a1a1a;
+  background: var(--toast-error-bg);
   border: 1px solid var(--color-danger);
   color: var(--color-danger);
 }
@@ -863,7 +869,7 @@ button:focus:not(:focus-visible) {
 .save-button.dirty {
   background: var(--switch-checked-color);
   border-color: var(--switch-checked-color);
-  color: #fff;
+  color: var(--color-on-accent);
   cursor: pointer;
 }
 
@@ -893,7 +899,7 @@ button:focus:not(:focus-visible) {
   padding: 5px 6px;
   border-radius: 0 var(--radius-level-5) var(--radius-level-5) 0;
   border: 1px solid var(--border-level-3);
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(var(--overlay-rgb), 0.15);
   background: var(--bg-level-4);
   color: var(--font-color-muted);
   cursor: default;
@@ -904,8 +910,8 @@ button:focus:not(:focus-visible) {
 .save-dropdown-toggle.dirty {
   background: var(--switch-checked-color);
   border-color: var(--switch-checked-color);
-  border-left-color: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  border-left-color: rgba(var(--overlay-rgb), 0.25);
+  color: var(--color-on-accent);
   cursor: pointer;
 }
 
@@ -948,7 +954,7 @@ button:focus:not(:focus-visible) {
 }
 
 .save-dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--overlay-rgb), 0.08);
 }
 
 /* ========== Confirm Dialog ========== */
@@ -1013,7 +1019,7 @@ button:focus:not(:focus-visible) {
 .dialog-btn-confirm {
   background: var(--switch-checked-color);
   border-color: var(--switch-checked-color);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 .dialog-btn-confirm:hover {
@@ -1023,7 +1029,7 @@ button:focus:not(:focus-visible) {
 .dialog-btn-danger {
   background: var(--color-danger);
   border-color: var(--color-danger);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 .dialog-btn-danger:hover {
@@ -1080,7 +1086,7 @@ button:focus:not(:focus-visible) {
   border-radius: var(--radius-level-5);
   border: 1px solid var(--switch-checked-color);
   background: var(--switch-checked-color);
-  color: #fff;
+  color: var(--color-on-accent);
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
@@ -1141,7 +1147,7 @@ button:focus:not(:focus-visible) {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-level-4);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(var(--overlay-rgb), 0.05);
   color: var(--font-color-accent);
 }
 
@@ -1344,7 +1350,7 @@ button:focus:not(:focus-visible) {
 }
 
 .backup-action-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(var(--overlay-rgb), 0.05);
   border: 1px solid var(--border-level-3);
   border-radius: var(--radius-level-5);
   color: var(--font-color-muted);
@@ -1356,7 +1362,7 @@ button:focus:not(:focus-visible) {
 }
 
 .backup-action-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--overlay-rgb), 0.1);
   color: var(--font-color);
 }
 
@@ -1421,7 +1427,7 @@ button:focus:not(:focus-visible) {
 .ts-action-primary {
   background: var(--switch-checked-color);
   border-color: var(--switch-checked-color);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 .ts-action-primary:hover {

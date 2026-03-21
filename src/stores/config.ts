@@ -107,7 +107,14 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
   diff: () => {
     const { config, defaults } = get();
     const output: Record<string, unknown> = {};
+    // When a theme is active, color properties are managed by the theme file
+    const hasTheme = typeof config.theme === "string" && config.theme !== "";
+    const themeColorKeys = new Set([
+      "background", "foreground", "selectionBackground", "selectionForeground",
+      "cursorColor", "cursorText", "palette",
+    ]);
     for (const k in config) {
+      if (hasTheme && themeColorKeys.has(k)) continue;
       if (Array.isArray(config[k]) && k === "keybind") {
         const toAdd = (config[k] as string[]).filter(
           (c) => !(defaults[k] as string[]).includes(c)
@@ -137,7 +144,10 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
           lines.push(`${key} = ${item}`);
         }
       } else {
-        lines.push(`${key} = ${value}`);
+        const v = key === "theme" && typeof value === "string" && value.startsWith("custom:")
+          ? value.slice("custom:".length)
+          : value;
+        lines.push(`${key} = ${v}`);
       }
     }
     return lines.join("\n");
@@ -153,6 +163,29 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
       const text = await invoke<string>("read_ghostty_config");
       if (text) {
         const parsed = parseConfig(text);
+        // If a theme is set, load its colors into the store for the app UI
+        if (typeof parsed.theme === "string" && parsed.theme) {
+          let isCustom = false;
+          try {
+            const customThemes = await invoke<{ name: string; filename: string }[]>("list_custom_themes");
+            if (customThemes.some((t) => t.name === parsed.theme)) {
+              isCustom = true;
+            }
+          } catch { /* ignore — custom themes dir may not exist */ }
+
+          try {
+            const themeText = isCustom
+              ? await invoke<string>("read_theme", { name: parsed.theme })
+              : await fetchColorScheme(parsed.theme);
+            const themeColors = parseConfig(themeText);
+            // Merge theme colors as base, config values override
+            for (const key of Object.keys(themeColors)) {
+              if (!(key in parsed)) parsed[key] = themeColors[key];
+            }
+          } catch { /* theme file unavailable — fall through with defaults */ }
+
+          if (isCustom) parsed.theme = `custom:${parsed.theme}`;
+        }
         const newConfig = { ...defaults };
         for (const key in parsed) {
           if (!(key in newConfig)) continue;

@@ -40,6 +40,11 @@ export function useAppTheme() {
     // For light themes, step is negative (darken for depth); for dark, positive (lighten)
     const step = dark ? 8 : -8;
     const accent = palette?.[4] || "#81a2be";
+    const danger = palette?.[1] || "#f25f58";
+    const success = palette?.[2] || "#58cb42";
+    const warning = palette?.[3] || "#fbbe3c";
+    // Overlay tint: white for dark themes, black for light
+    const overlayColor = dark ? "255, 255, 255" : "0, 0, 0";
 
     // Sidebar: slightly offset from main background, with transparency for blur
     const sidebarBase = adjustBrightness(background, dark ? -10 : -15);
@@ -77,6 +82,17 @@ export function useAppTheme() {
       "--color-input-accent": accent,
       "--switch-checked-color": accent,
       "--switch-body-color": adjustBrightness(background, step * 4),
+
+      "--color-danger": danger,
+      "--color-success": success,
+      "--color-warning": warning,
+      "--color-on-accent": dark ? "#ffffff" : "#ffffff",
+      "--toast-success-bg": withAlpha(success, dark ? 0.15 : 0.1),
+      "--toast-error-bg": withAlpha(danger, dark ? 0.15 : 0.1),
+      "--overlay-rgb": overlayColor,
+
+      "--scrollbar-bg": adjustBrightness(background, dark ? -30 : -20),
+      "--scrollbar-thumb": blendToward(foreground, background, 0.6),
     };
 
     const root = document.documentElement;
