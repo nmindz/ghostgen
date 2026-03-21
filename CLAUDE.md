@@ -73,7 +73,7 @@ BREAKING CHANGE: the `load()` method now requires a parsed config object instead
 feat(backup): add backup and restore functionality
 fix(import): handle malformed config files gracefully
 chore: remove unused Ghost icon import
-docs(prd): add theme studio PRD
+docs: document theme studio workflow
 ci: add semantic-release workflow
 ```
 

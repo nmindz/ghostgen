@@ -101,7 +101,6 @@ ghostgen/
     utils/                # Config parsing, color utilities
   src-tauri/              # Rust backend
     src/commands/          # Tauri commands (config, backup, themes)
-  _prds/                  # Product requirement documents
 ```
 
 ## How It Works

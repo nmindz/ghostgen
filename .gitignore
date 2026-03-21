@@ -6,7 +6,7 @@ dist/
 target/
 
 # Tauri
-src-tauri/target/
+src-tauri/target
 src-tauri/gen/schemas
 
 # IDE
@@ -23,10 +23,15 @@ src-tauri/gen/schemas
 # Logs
 *.log
 
+# Local docs (not published)
+_prds/
+
 # Claude Code
+.claude/
 backups/
 cache/
 history.jsonl
+image-cache/
 mcp-needs-auth-cache.json
 plugins/
 projects/
