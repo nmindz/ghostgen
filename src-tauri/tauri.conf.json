@@ -14,9 +14,9 @@
       {
         "label": "main",
         "title": "Ghostgen",
-        "width": 760,
-        "height": 740,
-        "minWidth": 700,
+        "width": 960,
+        "height": 780,
+        "minWidth": 800,
         "minHeight": 600,
         "resizable": true,
         "center": true,

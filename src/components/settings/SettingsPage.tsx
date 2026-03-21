@@ -11,6 +11,7 @@ import Dropdown from "./Dropdown";
 import ColorInput from "./ColorInput";
 import PaletteGrid from "./Palette";
 import ThemeDropdown from "./ThemeDropdown";
+import KeybindEditor from "./KeybindEditor";
 import PalettePreview from "@/components/views/PalettePreview";
 import BaseColorPreview from "@/components/views/BaseColorPreview";
 import CursorPreview from "@/components/views/CursorPreview";
@@ -48,13 +49,11 @@ export default function SettingsPage() {
 
             if (setting.type === "keybinds") {
               return (
-                <div key={setting.id} className="keybinds-list">
-                  {(value as string[]).map((kb, i) => (
-                    <div key={i} className="keybind-item">
-                      <code>{kb}</code>
-                    </div>
-                  ))}
-                </div>
+                <KeybindEditor
+                  key={setting.id}
+                  value={value as string[]}
+                  onChange={(v) => set(setting.id, v)}
+                />
               );
             }
 
