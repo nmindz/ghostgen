@@ -124,7 +124,7 @@ button:focus:not(:focus-visible) {
 #sidebar {
   width: var(--sidebar-width);
   min-width: var(--sidebar-width);
-  background: rgba(50, 46, 52, 0.85);
+  background: var(--sidebar-bg, rgba(50, 46, 52, 0.85));
   backdrop-filter: blur(10px);
   padding: 5px;
   border-right: 2px solid var(--border-level-1);
@@ -1520,6 +1520,8 @@ button:focus:not(:focus-visible) {
 .ts-themes-list {
   display: flex;
   flex-direction: column;
+  max-height: 135px;
+  overflow-y: auto;
 }
 
 .ts-theme-row {

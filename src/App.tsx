@@ -11,10 +11,12 @@ import ToastStack from "@/components/Toast";
 import ConfirmDialog from "@/components/ConfirmDialog";
 import { useConfigStore } from "@/stores/config";
 import { useToastStore } from "@/stores/toasts";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 export default function App() {
   const hydrate = useConfigStore((s) => s.hydrate);
   const addToast = useToastStore((s) => s.add);
+  useAppTheme();
   const [showCloseDialog, setShowCloseDialog] = useState(false);
 
   // Hydrate config from disk on mount
