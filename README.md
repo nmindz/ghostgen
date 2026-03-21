@@ -118,4 +118,6 @@ Ghostgen is inspired by [ghostty-config](https://github.com/zerebos/ghostty-conf
 
 ## License
 
-MIT
+Ghostgen is free software licensed under the [GNU General Public License v3.0](LICENSE) or later.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [LICENSE](LICENSE) file for details.
